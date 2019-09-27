@@ -18,9 +18,11 @@ Pod::Spec.new do |spec|
     ss.source_files = "LBUserInfo/LBUserModel/**/*.{h,m}"
   end
   spec.subspec 'LBUserLocation' do |ss|
+    ss.dependency 'LBUserInfo/LBUserModel'
     ss.source_files = "LBUserInfo/LBUserLocation/**/*.{h,m}"
   end
   spec.subspec 'LBUserTempOperateInfo' do |ss|
+    ss.dependency 'LBUserInfo/LBUserModel'
     ss.source_files = "LBUserInfo/LBUserTempOperateInfo/**/*.{h,m}"
   end
 end
