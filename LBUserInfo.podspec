@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "LBUserInfo"
-  spec.version      = "0.0.1"
+  spec.version      = "0.0.2"
   spec.summary      = "用户基本信息快速缓存、获取类。。"
   spec.description  = "项目中用户基本信息快速缓存、获取类。"
   spec.homepage     = "https://github.com/A1129434577/LBUserInfo"
@@ -12,7 +12,7 @@ Pod::Spec.new do |spec|
   spec.requires_arc = true
   
 
-  spec.default_subspec = 'LBUserModel'
+  #spec.default_subspec = 'LBUserModel'
 
   spec.subspec 'LBUserModel' do |ss|
     ss.source_files = "LBUserInfo/LBUserModel/**/*.{h,m}"
