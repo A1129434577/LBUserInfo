@@ -9,8 +9,8 @@
 #import "LBUserModel+Location.h"
 #import <objc/runtime.h>
 
-static NSString *placemarkKey = @"placemarkKey";
-static NSString *getLocationInfoBlockKey = @"getLocationInfoBlockKey";
+static NSString *LB_PlacemarkKey = @"LB_PlacemarkKey";
+static NSString *LB_GetLocationInfoBlockKey = @"LB_GetLocationInfoBlockKey";
 
 static CLLocationManager *_locationManager;
 @interface LBUserModel ()<CLLocationManagerDelegate>
@@ -20,18 +20,18 @@ static CLLocationManager *_locationManager;
 @implementation LBUserModel (Location)
 
 -(CLPlacemark *)placemark{
-    return objc_getAssociatedObject(self, &placemarkKey);
+    return objc_getAssociatedObject(self, &LB_PlacemarkKey);
 }
 -(void)setPlacemark:(CLPlacemark *)placemark{
-    objc_setAssociatedObject(self, &placemarkKey, placemark, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, &LB_PlacemarkKey, placemark, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 -(void (^)(CLPlacemark * _Nullable, NSError * _Nullable))getLocationInfoBlock{
-    return objc_getAssociatedObject(self, &getLocationInfoBlockKey);
+    return objc_getAssociatedObject(self, &LB_GetLocationInfoBlockKey);
 }
 
 -(void)setGetLocationInfoBlock:(void (^)(CLPlacemark * _Nullable, NSError * _Nullable))getLocationInfoBlock{
-    objc_setAssociatedObject(self, &getLocationInfoBlockKey, getLocationInfoBlock, OBJC_ASSOCIATION_COPY);
+    objc_setAssociatedObject(self, &LB_GetLocationInfoBlockKey, getLocationInfoBlock, OBJC_ASSOCIATION_COPY);
     
     if (_locationManager) {
         [_locationManager startUpdatingLocation];
@@ -64,15 +64,9 @@ static CLLocationManager *_locationManager;
     self.getLocationInfoBlock?
     self.getLocationInfoBlock(self.placemark,error):NULL;
     if (![CLLocationManager locationServicesEnabled]) {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            [[[UIAlertView alloc] initWithTitle:@"提示" message:@"请前往设置中心开启定位服务" delegate:nil cancelButtonTitle:@"我知道了" otherButtonTitles:nil] show];
-        });
+        NSLog(@"系统定位服务未开启");
     }else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            [[[UIAlertView alloc] initWithTitle:@"提示" message:@"请前往设置中心为本应用开启定位服务" delegate:nil cancelButtonTitle:@"我知道了" otherButtonTitles:nil] show];
-        });
+        NSLog(@"APP定位服务未授权");
     }
 }
 
