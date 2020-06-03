@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "LBUserInfo"
-  spec.version      = "0.0.2"
+  spec.version      = "1.0.0"
   spec.summary      = "用户基本信息快速缓存、获取类。。"
   spec.description  = "项目中用户基本信息快速缓存、获取类。"
   spec.homepage     = "https://github.com/A1129434577/LBUserInfo"
