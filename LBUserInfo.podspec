@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "LBUserInfo"
-  spec.version      = "1.0.0"
+  spec.version      = "1.0.1"
   spec.summary      = "用户基本信息快速缓存、获取类。。"
   spec.description  = "项目中用户基本信息快速缓存、获取类。"
   spec.homepage     = "https://github.com/A1129434577/LBUserInfo"
@@ -24,5 +24,9 @@ Pod::Spec.new do |spec|
   spec.subspec 'LBUserTempOperateInfo' do |ss|
     ss.dependency 'LBUserInfo/LBUserModel'
     ss.source_files = "LBUserInfo/LBUserTempOperateInfo/**/*.{h,m}"
+  end
+  spec.subspec 'LBUserSystemAuth' do |ss|
+    ss.dependency 'LBUserInfo/LBUserModel'
+    ss.source_files = "LBUserInfo/LBUserSystemAuth/**/*.{h,m}"
   end
 end

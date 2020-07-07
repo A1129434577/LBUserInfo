@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4043F82224B48CE100D448C6 /* LBUserModel+SystemAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 4043F82124B48CE100D448C6 /* LBUserModel+SystemAuth.m */; };
 		4046AB29233E1FF200299809 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4046AB28233E1FF200299809 /* AppDelegate.m */; };
 		4046AB2F233E1FF200299809 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4046AB2E233E1FF200299809 /* ViewController.m */; };
 		4046AB34233E1FF500299809 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4046AB33233E1FF500299809 /* Assets.xcassets */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4043F82024B48CE100D448C6 /* LBUserModel+SystemAuth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LBUserModel+SystemAuth.h"; sourceTree = "<group>"; };
+		4043F82124B48CE100D448C6 /* LBUserModel+SystemAuth.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "LBUserModel+SystemAuth.m"; sourceTree = "<group>"; };
 		4046AB24233E1FF200299809 /* LBUserInfoExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LBUserInfoExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4046AB27233E1FF200299809 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4046AB28233E1FF200299809 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -48,6 +51,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4043F81F24B48C9900D448C6 /* LBUserSystemAuth */ = {
+			isa = PBXGroup;
+			children = (
+				4043F82024B48CE100D448C6 /* LBUserModel+SystemAuth.h */,
+				4043F82124B48CE100D448C6 /* LBUserModel+SystemAuth.m */,
+			);
+			path = LBUserSystemAuth;
+			sourceTree = "<group>";
+		};
 		4046AB1B233E1FF200299809 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +99,7 @@
 				4046AB43233E204000299809 /* LBUserModel */,
 				4046AB46233E204000299809 /* LBUserLocation */,
 				4046AB49233E204000299809 /* LBUserTempOperateInfo */,
+				4043F81F24B48C9900D448C6 /* LBUserSystemAuth */,
 			);
 			path = LBUserInfo;
 			sourceTree = SOURCE_ROOT;
@@ -188,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4043F82224B48CE100D448C6 /* LBUserModel+SystemAuth.m in Sources */,
 				4046AB2F233E1FF200299809 /* ViewController.m in Sources */,
 				4046AB4E233E204000299809 /* LBUserModel+TempOperateInfo.m in Sources */,
 				4046AB29233E1FF200299809 /* AppDelegate.m in Sources */,
