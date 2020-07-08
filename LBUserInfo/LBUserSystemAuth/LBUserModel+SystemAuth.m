@@ -20,8 +20,10 @@ static void (^locationComplete)(BOOL, CLAuthorizationStatus);
                 [notPassedAuthTypes addObject:obj];
             }
         }];
-        complete?
-        complete(notPassedAuthTypes):NULL;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            complete?
+            complete(notPassedAuthTypes):NULL;
+        });
     }];
 }
 
@@ -52,7 +54,7 @@ static void (^locationComplete)(BOOL, CLAuthorizationStatus);
         }
     }
 }
-
+#pragma mark 相册权限
 + (void)checkAndRequestPhotoLibraryAuthComplete:(void (^)(BOOL, PHAuthorizationStatus))complete{
     __block BOOL photoLibraryAvailable = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
     
@@ -60,15 +62,19 @@ static void (^locationComplete)(BOOL, CLAuthorizationStatus);
     
     if (auth == PHAuthorizationStatusNotDetermined) {
         [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-            complete?
-            complete(photoLibraryAvailable,status):NULL;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complete?
+                complete(photoLibraryAvailable,status):NULL;
+            });
         }];
     }else{
-        complete?
-        complete(photoLibraryAvailable,auth):NULL;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            complete?
+            complete(photoLibraryAvailable,auth):NULL;
+        });
     }
 }
-
+#pragma mark 位置权限
 + (void)checkAndRequestLocationAlwaysAuth:(BOOL )always complete:(void (^)(BOOL, CLAuthorizationStatus))complete{
     locationComplete = complete;
     
@@ -83,7 +89,9 @@ static void (^locationComplete)(BOOL, CLAuthorizationStatus);
 }
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status{
     if (locationComplete) {
-        locationComplete([CLLocationManager locationServicesEnabled],status);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            locationComplete([CLLocationManager locationServicesEnabled],status);
+        });
     }
 }
 @end
