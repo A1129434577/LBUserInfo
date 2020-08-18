@@ -11,13 +11,21 @@
 @implementation LBUserModel (TempOperateInfo)
 
 @dynamic tempOperateInfo;
-static NSString *tempOperateInfoKey = @"TempOperateInfoKey";
+static NSString *TempOperateInfoKey = @"TempOperateInfoKey";
+static NSString *NeedRefreshDataBlockKey = @"NeedRefreshDataBlockKey";
 
 - (NSMutableDictionary *)tempOperateInfo{
-    return objc_getAssociatedObject(self, &tempOperateInfoKey);
+    return objc_getAssociatedObject(self, &TempOperateInfoKey);
 }
 -(void)setTempOperateInfo:(NSMutableDictionary *)tempOperateInfo{
-    objc_setAssociatedObject(self, &tempOperateInfoKey, tempOperateInfo, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &TempOperateInfoKey, tempOperateInfo, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NeedRefreshDataBlock)needRefreshDataBlock{
+    return objc_getAssociatedObject(self, &NeedRefreshDataBlockKey);
+}
+- (void)setNeedRefreshDataBlock:(NeedRefreshDataBlock)needRefreshDataBlock{
+    objc_setAssociatedObject(self, &NeedRefreshDataBlockKey, needRefreshDataBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 @end
 
