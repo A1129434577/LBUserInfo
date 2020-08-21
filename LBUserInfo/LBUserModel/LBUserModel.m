@@ -36,7 +36,7 @@ NSString *const LBAccount = @"LBAccount";
 }
 
 -(NSDictionary *)userInfo{
-    if (_privateUserInfo) {
+    if (_privateUserInfo.count) {
         return _privateUserInfo;
     }else{
         _privateUserInfo = [[[NSUserDefaults standardUserDefaults] objectForKey:LBUserInfo] mutableCopy];
