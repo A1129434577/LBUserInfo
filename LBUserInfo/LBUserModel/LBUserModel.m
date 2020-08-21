@@ -26,6 +26,15 @@ NSString *const LBAccount = @"LBAccount";
     return info;
 }
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.privateUserInfo = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+}
+
 -(NSDictionary *)userInfo{
     if (_privateUserInfo) {
         return _privateUserInfo;
