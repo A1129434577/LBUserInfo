@@ -9,6 +9,7 @@
 #import "LBUserModel+SystemAuth.h"
 
 static void (^locationComplete)(BOOL, CLAuthorizationStatus);
+static CLLocationManager *locationManager;
 
 @implementation LBUserModel (SystemAuth)
 #pragma mark 相机、麦克风权限
@@ -78,7 +79,7 @@ static void (^locationComplete)(BOOL, CLAuthorizationStatus);
 + (void)checkAndRequestLocationAlwaysAuth:(BOOL )always complete:(void (^)(BOOL, CLAuthorizationStatus))complete{
     locationComplete = complete;
     
-    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = [self shareInstanse];
     
     if (always) {
