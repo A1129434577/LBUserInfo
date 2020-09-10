@@ -26,15 +26,6 @@ NSString *const LBAccount = @"LBAccount";
     return info;
 }
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.privateUserInfo = [[NSMutableDictionary alloc] init];
-    }
-    return self;
-}
-
 -(NSDictionary *)userInfo{
     if (_privateUserInfo.count) {
         return _privateUserInfo;
@@ -47,12 +38,18 @@ NSString *const LBAccount = @"LBAccount";
     }
     return _privateUserInfo;
 }
+- (NSMutableDictionary *)privateUserInfo{
+    if (!_privateUserInfo) {
+        [self userInfo];
+    }
+    return _privateUserInfo;
+}
 - (void)setLBUserInfoObject:(id)anObject forKey:(id)aKey{
     if ([anObject isEqual:[NSNull null]]) {
         anObject = @"";
     }
-    [_privateUserInfo setValue:anObject forKey:aKey];
-    [[NSUserDefaults standardUserDefaults] setObject:_privateUserInfo forKey:LBUserInfo];
+    [self.privateUserInfo setValue:anObject forKey:aKey];
+    [[NSUserDefaults standardUserDefaults] setObject:self.privateUserInfo forKey:LBUserInfo];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 - (void)addEntriesForLBUserInfoFromDictionary:(NSDictionary *)otherDictionary{
@@ -61,27 +58,27 @@ NSString *const LBAccount = @"LBAccount";
         if ([anObject isEqual:[NSNull null]]) {
             anObject = @"";
         }
-        [_privateUserInfo setValue:anObject forKey:key];
+        [self.privateUserInfo setValue:anObject forKey:key];
     }
-    [[NSUserDefaults standardUserDefaults] setObject:_privateUserInfo forKey:LBUserInfo];
+    [[NSUserDefaults standardUserDefaults] setObject:self.privateUserInfo forKey:LBUserInfo];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)removeUserInfo{
-    _privateUserInfo = nil;
+    self.privateUserInfo = nil;
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:LBUserInfo];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 - (void)removeLBUserInfoAllObjects{
-    [self removeLBUserInfoObjectsForKeys:_privateUserInfo.allKeys];
+    [self removeLBUserInfoObjectsForKeys:self.privateUserInfo.allKeys];
 }
 - (void)removeLBUserInfoObjectForKey:(id)aKey{
     [self removeLBUserInfoObjectsForKeys:@[aKey]];
 }
 
 - (void)removeLBUserInfoObjectsForKeys:(NSArray*)keyArray{
-    [_privateUserInfo removeObjectsForKeys:keyArray];
-    [[NSUserDefaults standardUserDefaults] setObject:_privateUserInfo forKey:LBUserInfo];
+    [self.privateUserInfo removeObjectsForKeys:keyArray];
+    [[NSUserDefaults standardUserDefaults] setObject:self.privateUserInfo forKey:LBUserInfo];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 @end
