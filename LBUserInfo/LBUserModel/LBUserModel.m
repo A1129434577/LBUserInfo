@@ -7,10 +7,10 @@
 //
 
 #import "LBUserModel.h"
-NSString *const LBUserInfo = @"LBUserInfo";//私有
+LBUserModelKey const LBUserInfo = @"LBUserInfo";//私有
 
-NSString *const LBToken = @"LBToken";
-NSString *const LBAccount = @"LBAccount";
+LBUserModelKey const LBToken = @"LBToken";
+LBUserModelKey const LBAccount = @"LBAccount";
 
 @interface LBUserModel()
 @property (nonatomic,strong)NSMutableDictionary *privateUserInfo;

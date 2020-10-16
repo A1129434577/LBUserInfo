@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-extern NSString *const LBToken;//登录token
-extern NSString *const LBAccount;
+typedef NSString* LBUserModelKey;
+extern LBUserModelKey const LBToken;//登录token
+extern LBUserModelKey const LBAccount;
 
 @interface LBUserModel : NSObject
 //用户登录信息
